@@ -72,7 +72,18 @@ class Hasher
         $this->defaultConnection = array_get($configs, 'connection', '');
         $this->currentConnection = $this->defaultConnection;
 
-        $this->make();
+        $this->init();
+    }
+
+    /**
+     * Make hash client.
+     */
+    private function init()
+    {
+        $this->client = $this->factory->make(
+            $this->currentClient,
+            $this->currentConnection
+        );
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -118,9 +129,11 @@ class Hasher
      */
     public function client($client)
     {
+        $this->factory->checkClient($client);
         $this->currentClient = $client;
+        $this->init();
 
-        return $this->make();
+        return $this;
     }
 
     /**
@@ -153,8 +166,9 @@ class Hasher
     public function connection($connection = 'main')
     {
         $this->currentConnection = $connection;
+        $this->init();
 
-        return $this->make();
+        return $this;
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -162,13 +176,17 @@ class Hasher
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Make hash client.
+     * Register a hasher client.
+     *
+     * @param  string  $name
+     * @param  string  $class
+     * @param  array   $connections
      *
      * @return self
      */
-    private function make()
+    public function register($name, $class, array $connections = [])
     {
-        $this->client = $this->factory->make($this->currentClient, $this->currentConnection);
+        $this->factory->register($name, $class, $connections);
 
         return $this;
     }
