@@ -73,7 +73,8 @@ class HasherServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            //
+            'arcanedev.hasher',
+            'arcanedev.hasher.factory',
         ];
     }
 

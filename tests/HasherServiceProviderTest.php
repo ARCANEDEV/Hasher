@@ -56,7 +56,10 @@ class HasherServiceProviderTest extends TestCase
     /** @test */
     public function it_can_provides()
     {
-        $expected = [];
+        $expected = [
+            'arcanedev.hasher',
+            'arcanedev.hasher.factory',
+        ];
 
         $this->assertEquals($expected, $this->provider->provides());
     }
