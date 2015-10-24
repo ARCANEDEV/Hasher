@@ -77,7 +77,7 @@ class HasherFactory
      */
     private function getHasherClient($client)
     {
-        $this->hasHasherClient($client);
+        $this->checkClient($client);
 
         $hasher = array_get($this->clients, $client);
 
@@ -117,6 +117,37 @@ class HasherFactory
         return $hasher->make($configs);
     }
 
+    /**
+     * Register a hasher client.
+     *
+     * @param  string  $name
+     * @param  string  $class
+     * @param  array   $connections
+     */
+    public function register($name, $class, array $connections = [])
+    {
+        if (empty($connections)) {
+            $connections = [
+                'main' => []
+            ];
+        }
+
+        $this->clients[$name]     = $class;
+        $this->connections[$name] = $connections;
+    }
+
+    /**
+     * Check if client is registered.
+     *
+     * @param  string  $client
+     *
+     * @return bool
+     */
+    public function registered($client)
+    {
+        return array_has($this->clients, $client);
+    }
+
     /* ------------------------------------------------------------------------------------------------
      |  Check Functions
      | ------------------------------------------------------------------------------------------------
@@ -146,9 +177,9 @@ class HasherFactory
      *
      * @throws Exceptions\HasherNotFoundException
      */
-    private function hasHasherClient($client)
+    public function checkClient($client)
     {
-        if ( ! array_has($this->clients, $client)) {
+        if ( ! $this->registered($client)) {
             throw new HasherNotFoundException(
                 "The hasher client [$client] not found."
             );

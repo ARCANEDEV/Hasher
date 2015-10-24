@@ -102,4 +102,78 @@ class HasherFactoryTest extends TestCase
     {
         $this->hasherFactory->make('hash');
     }
+
+    /** @test */
+    public function it_can_register_a_custom_hash_client()
+    {
+        $this->registerCustomClient();
+        $hasher = $this->hasherFactory->make('mcrypt');
+
+        $this->assertInstanceOf(Stubs\CustomHasherClient::class, $hasher);
+        $this->assertEquals('Custom hash client', $hasher->getClient());
+    }
+
+    /** @test */
+    public function it_can_register_a_custom_hash_client_with_empty_connections()
+    {
+        $this->registerCustomClientWithEmptyConnections();
+        $hasher = $this->hasherFactory->make('mcrypt');
+
+        $this->assertInstanceOf(Stubs\CustomHasherClient::class, $hasher);
+        $this->assertEquals('Custom hash client', $hasher->getClient());
+    }
+
+    /** @test */
+    public function it_can_encode_and_decode_with_custom_hasher()
+    {
+        $this->registerCustomClient();
+
+        $hasher = $this->hasherFactory->make('mcrypt');
+        $plain  = 123456;
+        $hashed = $hasher->encode($plain);
+
+        $this->assertNotEquals($plain, $hashed);
+
+        $this->assertEquals($plain, $hasher->decode($hashed));
+    }
+
+    /** @test */
+    public function it_can_encode_and_decode_with_custom_hasher_with_empty_connections()
+    {
+        $this->registerCustomClientWithEmptyConnections();
+
+        $hasher = $this->hasherFactory->make('mcrypt');
+        $plain  = 123456;
+        $hashed = $hasher->encode($plain);
+
+        $this->assertNotEquals($plain, $hashed);
+
+        $this->assertEquals($plain, $hasher->decode($hashed));
+    }
+
+    /* ------------------------------------------------------------------------------------------------
+     |  Other Functions
+     | ------------------------------------------------------------------------------------------------
+     */
+    private function registerCustomClient()
+    {
+        $this->hasherFactory->register(
+            'mcrypt', Stubs\CustomHasherClient::class,
+            [
+                'main'  => [
+                    'salt'  => 'main salt to (en/de)crypt',
+                ],
+                'alt'  => [
+                    'salt'  => 'alt salt to (en/de)crypt',
+                ],
+            ]
+        );
+    }
+
+    private function registerCustomClientWithEmptyConnections()
+    {
+        $this->hasherFactory->register(
+            'mcrypt', Stubs\CustomHasherClient::class
+        );
+    }
 }
