@@ -52,6 +52,9 @@ class HasherServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerConfig();
+
+        $this->registerHasherFactory();
+        $this->registerHasherService();
     }
 
     /**
@@ -72,5 +75,42 @@ class HasherServiceProvider extends ServiceProvider
         return [
             //
         ];
+    }
+
+    /* ------------------------------------------------------------------------------------------------
+     |  Service Functions
+     | ------------------------------------------------------------------------------------------------
+     */
+    /**
+     * Register Hasher factory.
+     */
+    private function registerHasherFactory()
+    {
+        $this->singleton('arcanedev.hasher.factory', function ($app) {
+            /** @var  \Illuminate\Contracts\Config\Repository  $config */
+            $config = $app['config'];
+
+            return new HasherFactory(
+                $config->get('hasher.clients'),
+                $config->get('hasher.connections')
+            );
+        });
+    }
+
+    /**
+     * Register Hasher service.
+     */
+    private function registerHasherService()
+    {
+        $this->singleton('arcanedev.hasher', function ($app) {
+            /**
+             * @var  \Illuminate\Contracts\Config\Repository  $config
+             * @var  \Arcanedev\Hasher\HasherFactory          $factory
+             */
+            $config  = $app['config'];
+            $factory = $app['arcanedev.hasher.factory'];
+
+            return new Hasher($config->get('hasher'), $factory);
+        });
     }
 }
