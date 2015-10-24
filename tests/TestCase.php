@@ -52,6 +52,28 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageAliases($app)
     {
         return [
+            \Arcanedev\Hasher\Facades\Hasher::class,
         ];
+    }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        /** @var  \Illuminate\Contracts\Config\Repository  $config */
+        $config = $app['config'];
+
+        $config->set('hasher.connections', [
+            'hashids'   => [
+                'main'  => [
+                    'salt'      => 'This is my main salt',
+                    'length'    => 8,
+                    'alphabet'  => 'abcdefghij1234567890',
+                ],
+                'alt'   => [
+                    'salt'      => 'This is my alternative salt',
+                    'length'    => 6,
+                    'alphabet'  => 'ABCDEFGHIJ1234567890',
+                ],
+            ],
+        ]);
     }
 }
