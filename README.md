@@ -1,4 +1,4 @@
-# Hasher [![Packagist License][badge_license]](LICENSE.md) [![For PHP][badge_php]](https://github.com/ARCANEDEV/Hasher)
+# Hasher [![Packagist License][badge_license]](LICENSE.md) [![For Laravel 5][badge_laravel]](https://github.com/ARCANEDEV/Hasher#hasher)
 
 [![Travis Status][badge_build]](https://travis-ci.org/ARCANEDEV/Hasher)
 [![HHVM Status][badge_hhvm]](http://hhvm.h4cc.de/package/arcanedev/hasher)
@@ -11,8 +11,8 @@
 [![Packagist Release][badge_release]](https://packagist.org/packages/arcanedev/hasher)
 [![Packagist Downloads][badge_downloads]](https://packagist.org/packages/arcanedev/hasher)
 
-[badge_php]:       https://img.shields.io/badge/PHP-Framework%20agnostic-4F5B93.svg?style=flat-square
 [badge_license]:   https://img.shields.io/packagist/l/arcanedev/hasher.svg?style=flat-square
+[badge_laravel]:   https://img.shields.io/badge/For%20Laravel-5.0%7C5.1-orange.svg?style=flat-square
 
 [badge_build]:     https://img.shields.io/travis/ARCANEDEV/Hasher.svg?style=flat-square
 [badge_hhvm]:      https://img.shields.io/hhvm/arcanedev/hasher.svg?style=flat-square
