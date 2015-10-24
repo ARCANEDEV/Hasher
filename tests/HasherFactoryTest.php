@@ -95,6 +95,36 @@ class HasherFactoryTest extends TestCase
     /**
      * @test
      *
+     * @expectedException         \Arcanedev\Hasher\Exceptions\HasherConnectionsException
+     * @expectedExceptionMessage  The hasher connections must be an associative array [key => value].
+     */
+    public function it_must_throw_hasher_exception_on_invalid_connections()
+    {
+        new HasherFactory([
+            'hashids' => \Arcanedev\Hasher\Clients\HashidsClient::class
+        ], ['hashids']);
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException         \Arcanedev\Hasher\Exceptions\HasherConnectionsException
+     * @expectedExceptionMessage  The hasher [hashids] connections must have a [main] connection.
+     */
+    public function it_must_throw_hasher_exception_on_main_connection_not_found()
+    {
+        new HasherFactory([
+            'hashids' => \Arcanedev\Hasher\Clients\HashidsClient::class
+        ], [
+            'hashids'   => [
+                'not-main' => []
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     *
      * @expectedException         \Arcanedev\Hasher\Exceptions\HasherNotFoundException
      * @expectedExceptionMessage  The hasher client [hash] not found.
      */

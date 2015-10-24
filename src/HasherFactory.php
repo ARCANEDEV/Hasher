@@ -1,4 +1,6 @@
 <?php namespace Arcanedev\Hasher;
+
+use Arcanedev\Hasher\Exceptions\HasherConnectionsException;
 use Arcanedev\Hasher\Exceptions\HasherException;
 use Arcanedev\Hasher\Exceptions\HasherNotFoundException;
 
@@ -186,11 +188,29 @@ class HasherFactory
         }
     }
 
+    /**
+     * Check the hasher connections.
+     *
+     * @param  array  $connections
+     *
+     * @throws \Arcanedev\Hasher\Exceptions\HasherConnectionsException
+     */
     private function checkConnections(array $connections)
     {
-        // TODO: Complete the checkConnections() implementation.
-    }
+        if ( ! $this->isAssoc($connections)) {
+            throw new HasherConnectionsException(
+                'The hasher connections must be an associative array [key => value].'
+            );
+        }
 
+        foreach ($connections as $key => $connection) {
+            if ( ! array_key_exists('main', $connection)) {
+                throw new HasherConnectionsException(
+                    "The hasher [$key] connections must have a [main] connection."
+                );
+            }
+        }
+    }
 
     /**
      * Check if array is associative.
