@@ -26,3 +26,35 @@
 [badge_downloads]: https://img.shields.io/packagist/dt/arcanedev/hasher.svg?style=flat-square
 
 *By [ARCANEDEV&copy;](http://www.arcanedev.net/)*
+
+The Hasher package provides a flexible hash manager for Laravel.
+
+Feel free to check out the [releases](https://github.com/ARCANEDEV/Hasher/releases), [license](LICENSE.md), and [contribution guidelines](CONTRIBUTING.md).
+
+### Features
+
+  * Easy setup &amp; configuration.
+  * Well documented &amp; IDE Friendly.
+  * Well tested with maximum code quality.
+  * Made with :heart: &amp; :coffee:.
+
+## Table of contents
+
+  1. [Requirements](_docs/1-Requirements.md)
+  2. [Installation and Setup](_docs/2-Installation-and-Setup.md)
+  3. [Configuration](_docs/3-Configuration.md)
+  4. [Usage](_docs/4-Usage.md)
+
+## TODOS
+
+  - [ ] Complete the documentation.
+  - [ ] Test Laravel 5.0 support.
+  - [ ] Framework agnostic package.
+
+## DONE
+
+  - [x] Laravel 5.1 supported.
+
+## Contribution
+
+Any ideas are welcome. Feel free to submit any issues or pull requests, please check the [contribution guidelines](CONTRIBUTING.md).
