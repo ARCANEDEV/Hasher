@@ -28,6 +28,13 @@ class HasherServiceProvider extends ServiceProvider
      */
     protected $package = 'hasher';
 
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
     /* ------------------------------------------------------------------------------------------------
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
