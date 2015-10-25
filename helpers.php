@@ -4,7 +4,7 @@ if ( ! function_exists('hasher')) {
     /**
      * Get the Hasher repository.
      *
-     * @return \Arcanedev\Hasher\Hasher
+     * @return \Arcanedev\Hasher\Contracts\HashManager
      */
     function hasher() {
         return app('arcanedev.hasher');
