@@ -1,12 +1,14 @@
 <?php namespace Arcanedev\Hasher;
 
+use Arcanedev\Hasher\Contracts\HashManager;
+
 /**
  * Class     Hasher
  *
  * @package  Arcanedev\Hasher
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class Hasher
+class Hasher implements HashManager
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties
