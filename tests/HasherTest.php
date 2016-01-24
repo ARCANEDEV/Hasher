@@ -1,14 +1,18 @@
 <?php namespace Arcanedev\Hasher\Tests;
 
-use Arcanedev\Hasher\Hasher;
-
+/**
+ * Class     HasherTest
+ *
+ * @package  Arcanedev\Hasher\Tests
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ */
 class HasherTest extends TestCase
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /** @var Hasher */
+    /** @var \Arcanedev\Hasher\Hasher */
     private $hasher;
 
     /* ------------------------------------------------------------------------------------------------
@@ -24,9 +28,9 @@ class HasherTest extends TestCase
 
     public function tearDown()
     {
-        parent::tearDown();
-
         unset($this->hasher);
+
+        parent::tearDown();
     }
 
     /* ------------------------------------------------------------------------------------------------

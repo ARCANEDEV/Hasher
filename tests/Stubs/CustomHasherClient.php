@@ -10,6 +10,11 @@ use Arcanedev\Hasher\Contracts\HashClient;
  */
 class CustomHasherClient implements HashClient
 {
+    /* ------------------------------------------------------------------------------------------------
+     |  Properties
+     | ------------------------------------------------------------------------------------------------
+     */
+    /** @var  string */
     protected $salt;
 
     /* ------------------------------------------------------------------------------------------------
@@ -29,7 +34,7 @@ class CustomHasherClient implements HashClient
     /**
      * Make a new Hash client.
      *
-     * @param  array $configs
+     * @param  array  $configs
      *
      * @return self
      */
@@ -43,7 +48,7 @@ class CustomHasherClient implements HashClient
     /**
      * Encode the value.
      *
-     * @param  mixed $value
+     * @param  mixed  $value
      *
      * @return string
      */
@@ -66,7 +71,7 @@ class CustomHasherClient implements HashClient
     /**
      * Decode the hashed value.
      *
-     * @param  string $hash
+     * @param  string  $hash
      *
      * @return mixed
      */

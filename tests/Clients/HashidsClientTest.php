@@ -31,9 +31,9 @@ class HashidsClientTest extends TestCase
 
     public function tearDown()
     {
-        parent::tearDown();
-
         unset($this->hasher);
+
+        parent::tearDown();
     }
 
     /* ------------------------------------------------------------------------------------------------
