@@ -1,4 +1,5 @@
 <?php namespace Arcanedev\Hasher\Tests;
+
 use Arcanedev\Hasher\HasherServiceProvider;
 
 /**
@@ -13,7 +14,7 @@ class HasherServiceProviderTest extends TestCase
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /** @var HasherServiceProvider */
+    /** @var \Arcanedev\Hasher\HasherServiceProvider */
     private $provider;
 
     /* ------------------------------------------------------------------------------------------------
@@ -29,9 +30,9 @@ class HasherServiceProviderTest extends TestCase
 
     public function tearDown()
     {
-        parent::tearDown();
-
         unset($this->provider);
+
+        parent::tearDown();
     }
 
     /* ------------------------------------------------------------------------------------------------

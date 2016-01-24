@@ -14,9 +14,7 @@ class Hasher implements HashManager
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /**
-     * @var HasherFactory
-     */
+    /** @var \Arcanedev\Hasher\HasherFactory */
     protected $factory;
 
     /**
@@ -61,8 +59,8 @@ class Hasher implements HashManager
     /**
      * Make Hasher instance.
      *
-     * @param  array          $configs
-     * @param  HasherFactory  $factory
+     * @param  array                            $configs
+     * @param  \Arcanedev\Hasher\HasherFactory  $factory
      */
     public function __construct(array $configs, HasherFactory $factory)
     {

@@ -69,8 +69,6 @@ class HasherServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-
         // Publish the config file.
         $this->publishes([
             $this->getConfigFile() => config_path("{$this->package}.php"),
@@ -127,7 +125,7 @@ class HasherServiceProvider extends ServiceProvider
             return new Hasher($config->get('hasher'), $factory);
         });
 
-        $this->app->bind(
+        $this->bind(
             \Arcanedev\Hasher\Contracts\HashManager::class,
             'arcanedev.hasher'
         );

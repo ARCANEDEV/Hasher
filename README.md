@@ -12,7 +12,7 @@
 [![Packagist Downloads][badge_downloads]](https://packagist.org/packages/arcanedev/hasher)
 
 [badge_license]:   https://img.shields.io/packagist/l/arcanedev/hasher.svg?style=flat-square
-[badge_laravel]:   https://img.shields.io/badge/For%20Laravel-5.0%7C5.1-orange.svg?style=flat-square
+[badge_laravel]:   https://img.shields.io/badge/For%20Laravel-5.x-orange.svg?style=flat-square
 
 [badge_build]:     https://img.shields.io/travis/ARCANEDEV/Hasher.svg?style=flat-square
 [badge_hhvm]:      https://img.shields.io/hhvm/arcanedev/hasher.svg?style=flat-square
@@ -48,12 +48,12 @@ Feel free to check out the [releases](https://github.com/ARCANEDEV/Hasher/releas
 ## TODOS
 
   - [ ] Complete the documentation.
-  - [ ] Test Laravel 5.0 support.
   - [ ] Framework agnostic package.
-
 ## DONE
 
+  - [x] Laravel 5.2 supported.
   - [x] Laravel 5.1 supported.
+  - [x] Laravel 5.0 supported.
 
 ## Contribution
 
