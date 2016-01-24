@@ -1,9 +1,5 @@
 <?php namespace Arcanedev\Hasher;
 
-use Arcanedev\Hasher\Exceptions\HasherConnectionsException;
-use Arcanedev\Hasher\Exceptions\HasherException;
-use Arcanedev\Hasher\Exceptions\HasherNotFoundException;
-
 /**
  * Class     HasherFactory
  *
@@ -75,7 +71,7 @@ class HasherFactory
     /**
      * @param  string  $client
      *
-     * @return Contracts\HashClient
+     * @return \Arcanedev\Hasher\Contracts\HashClient
      */
     private function getHasherClient($client)
     {
@@ -109,7 +105,7 @@ class HasherFactory
      * @param  string  $client
      * @param  string  $connection
      *
-     * @return Contracts\HashClient
+     * @return \Arcanedev\Hasher\Contracts\HashClient
      */
     public function make($client, $connection = 'main')
     {
@@ -159,16 +155,20 @@ class HasherFactory
      *
      * @param  array  $clients
      *
-     * @throws Exceptions\HasherException
+     * @throws \Arcanedev\Hasher\Exceptions\HasherException
      */
     private function checkClients(array &$clients)
     {
         if (empty($clients)) {
-            throw new HasherException('You must specify the hasher clients.');
+            throw new Exceptions\HasherException(
+                'You must specify the hasher clients.'
+            );
         }
 
         if ( ! $this->isAssoc($clients)) {
-            throw new HasherException('The hasher clients must be an associative array [name => class].');
+            throw new Exceptions\HasherException(
+                'The hasher clients must be an associative array [name => class].'
+            );
         }
     }
 
@@ -177,12 +177,12 @@ class HasherFactory
      *
      * @param  string  $client
      *
-     * @throws Exceptions\HasherNotFoundException
+     * @throws \Arcanedev\Hasher\Exceptions\HasherNotFoundException
      */
     public function checkClient($client)
     {
         if ( ! $this->registered($client)) {
-            throw new HasherNotFoundException(
+            throw new Exceptions\HasherNotFoundException(
                 "The hasher client [$client] not found."
             );
         }
@@ -198,14 +198,14 @@ class HasherFactory
     private function checkConnections(array $connections)
     {
         if ( ! $this->isAssoc($connections)) {
-            throw new HasherConnectionsException(
+            throw new Exceptions\HasherConnectionsException(
                 'The hasher connections must be an associative array [key => value].'
             );
         }
 
         foreach ($connections as $key => $connection) {
             if ( ! array_key_exists('main', $connection)) {
-                throw new HasherConnectionsException(
+                throw new Exceptions\HasherConnectionsException(
                     "The hasher [$key] connections must have a [main] connection."
                 );
             }
