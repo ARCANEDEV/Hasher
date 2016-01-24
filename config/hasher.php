@@ -8,7 +8,7 @@ return [
     'client'  => 'hashids',
 
     'clients' => [
-        'hashids'   => \Arcanedev\Hasher\Clients\HashidsClient::class,
+        'hashids'   => Arcanedev\Hasher\Clients\HashidsClient::class,
     ],
 
     /* ------------------------------------------------------------------------------------------------
