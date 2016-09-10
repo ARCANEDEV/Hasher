@@ -1,6 +1,7 @@
 <?php namespace Arcanedev\Hasher\Tests\Stubs;
 
 use Arcanedev\Hasher\Contracts\HashClient;
+use Illuminate\Support\Arr;
 
 /**
  * Class     CustomHasherClient
@@ -40,7 +41,7 @@ class CustomHasherClient implements HashClient
      */
     public function make(array $configs)
     {
-        $this->salt = array_get($configs, 'salt', '');
+        $this->salt = Arr::get($configs, 'salt', '');
 
         return $this;
     }
@@ -54,18 +55,7 @@ class CustomHasherClient implements HashClient
      */
     public function encode($value)
     {
-        $iv = mcrypt_create_iv($this->getIvSize(), MCRYPT_DEV_URANDOM);
-
-        return base64_encode(
-            $iv .
-            mcrypt_encrypt(
-                MCRYPT_RIJNDAEL_128,
-                hash('sha256', $this->salt, true),
-                $value,
-                MCRYPT_MODE_CBC,
-                $iv
-            )
-        );
+        return "$value-hashed";
     }
 
     /**
@@ -77,32 +67,6 @@ class CustomHasherClient implements HashClient
      */
     public function decode($hash)
     {
-        $data = base64_decode($hash);
-        $iv   = substr($data, 0, $this->getIvSize());
-
-        return rtrim(
-            mcrypt_decrypt(
-                MCRYPT_RIJNDAEL_128,
-                hash('sha256', $this->salt, true),
-                substr($data, $this->getIvSize()),
-                MCRYPT_MODE_CBC,
-                $iv
-            ),
-            "\0"
-        );
-    }
-
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
-    /**
-     * Get the IV size.
-     *
-     * @return int
-     */
-    private function getIvSize()
-    {
-        return mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+        return substr($hash, 0, -7);
     }
 }
