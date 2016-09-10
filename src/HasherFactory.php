@@ -1,5 +1,7 @@
 <?php namespace Arcanedev\Hasher;
 
+use Illuminate\Support\Arr;
+
 /**
  * Class     HasherFactory
  *
@@ -12,10 +14,18 @@ class HasherFactory
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /** @var  array  */
+    /**
+     * The supported clients.
+     *
+     * @var  array
+     */
     protected $clients     = [];
 
-    /** @var  array  */
+    /**
+     * The hashing options.
+     *
+     * @var  array
+     */
     protected $connections = [];
 
     /* ------------------------------------------------------------------------------------------------
@@ -23,7 +33,7 @@ class HasherFactory
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Make a HasherFactory instance.
+     * HasherFactory constructor.
      *
      * @param  array  $clients
      * @param  array  $connections
@@ -69,6 +79,8 @@ class HasherFactory
     }
 
     /**
+     * Get the hasher client.
+     *
      * @param  string  $client
      *
      * @return \Arcanedev\Hasher\Contracts\HashClient
@@ -77,7 +89,7 @@ class HasherFactory
     {
         $this->checkClient($client);
 
-        $hasher = array_get($this->clients, $client);
+        $hasher = Arr::get($this->clients, $client);
 
         return new $hasher;
     }
@@ -92,7 +104,7 @@ class HasherFactory
      */
     private function getHasherConnection($client, $connection)
     {
-        return array_get($this->connections, "$client.$connection", []);
+        return Arr::get($this->connections, "$client.$connection", []);
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -109,10 +121,9 @@ class HasherFactory
      */
     public function make($client, $connection = 'main')
     {
-        $hasher  = $this->getHasherClient($client);
-        $configs = $this->getHasherConnection($client, $connection);
-
-        return $hasher->make($configs);
+        return $this->getHasherClient($client)->make(
+            $this->getHasherConnection($client, $connection)
+        );
     }
 
     /**
@@ -124,14 +135,8 @@ class HasherFactory
      */
     public function register($name, $class, array $connections = [])
     {
-        if (empty($connections)) {
-            $connections = [
-                'main' => []
-            ];
-        }
-
         $this->clients[$name]     = $class;
-        $this->connections[$name] = $connections;
+        $this->connections[$name] = empty($connections) ? ['main' => []] : $connections;
     }
 
     /**
@@ -143,7 +148,7 @@ class HasherFactory
      */
     public function registered($client)
     {
-        return array_has($this->clients, $client);
+        return Arr::has($this->clients, $client);
     }
 
     /* ------------------------------------------------------------------------------------------------

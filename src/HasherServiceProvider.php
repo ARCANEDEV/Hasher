@@ -15,13 +15,6 @@ class HasherServiceProvider extends ServiceProvider
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Vendor name.
-     *
-     * @var string
-     */
-    protected $vendor  = 'arcanedev';
-
-    /**
      * Package name.
      *
      * @var string
@@ -69,10 +62,9 @@ class HasherServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Publish the config file.
-        $this->publishes([
-            $this->getConfigFile() => config_path("{$this->package}.php"),
-        ], 'config');
+        parent::boot();
+
+        $this->publishConfig();
     }
 
     /**
