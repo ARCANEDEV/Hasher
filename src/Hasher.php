@@ -1,6 +1,7 @@
 <?php namespace Arcanedev\Hasher;
 
 use Arcanedev\Hasher\Contracts\HashManager;
+use Illuminate\Support\Arr;
 
 /**
  * Class     Hasher
@@ -66,10 +67,10 @@ class Hasher implements HashManager
     {
         $this->factory           = $factory;
 
-        $this->defaultClient     = array_get($configs, 'client', '');
+        $this->defaultClient     = Arr::get($configs, 'client', '');
         $this->currentClient     = $this->defaultClient;
 
-        $this->defaultConnection = array_get($configs, 'connection', '');
+        $this->defaultConnection = Arr::get($configs, 'connection', '');
         $this->currentConnection = $this->defaultConnection;
 
         $this->init();

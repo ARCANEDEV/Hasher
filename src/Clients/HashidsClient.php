@@ -2,6 +2,7 @@
 
 use Arcanedev\Hasher\Contracts\HashClient;
 use Hashids\Hashids;
+use Illuminate\Support\Arr;
 
 /**
  * Class     HashidsClient
@@ -46,9 +47,9 @@ class HashidsClient implements HashClient
     public function make(array $configs)
     {
         $this->client = new Hashids(
-            array_get($configs, 'salt', ''),
-            array_get($configs, 'length', 0),
-            array_get($configs, 'alphabet', '')
+            Arr::get($configs, 'salt', ''),
+            Arr::get($configs, 'length', 0),
+            Arr::get($configs, 'alphabet', '')
         );
 
         return $this;
