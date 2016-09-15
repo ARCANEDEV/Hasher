@@ -1,60 +1,46 @@
-<?php namespace Arcanedev\Hasher\Clients;
+<?php namespace Arcanedev\Hasher\Drivers;
 
-use Arcanedev\Hasher\Contracts\HashClient;
+use Arcanedev\Hasher\Contracts\HashDriver;
 use Hashids\Hashids;
 use Illuminate\Support\Arr;
 
 /**
- * Class     HashidsClient
+ * Class     HashidsDriver
  *
- * @package  Arcanedev\Hasher\Clients
+ * @package  Arcanedev\Hasher\Drivers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class HashidsClient implements HashClient
+class HashidsDriver implements HashDriver
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
     /** @var \Hashids\Hashids */
-    private $client;
+    private $hasher;
 
     /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
+     |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Get the client.
+     * HashidsDriver constructor.
      *
-     * @return \Hashids\Hashids
+     * @param  array  $options
      */
-    public function getClient()
+    public function __construct(array $options)
     {
-        return $this->client;
+        $this->hasher = new Hashids(
+            Arr::get($options, 'salt', ''),
+            Arr::get($options, 'length', 0),
+            Arr::get($options, 'alphabet', '')
+        );
     }
 
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
-    /**
-     * Make a new Hashids client.
-     *
-     * @param  array  $configs
-     *
-     * @return self
-     */
-    public function make(array $configs)
-    {
-        $this->client = new Hashids(
-            Arr::get($configs, 'salt', ''),
-            Arr::get($configs, 'length', 0),
-            Arr::get($configs, 'alphabet', '')
-        );
-
-        return $this;
-    }
-
     /**
      * Encode the value.
      *
@@ -64,18 +50,20 @@ class HashidsClient implements HashClient
      */
     public function encode($value)
     {
-        return $this->client->encode($value);
+        return $this->hasher->encode($value);
     }
 
     /**
      * Decode the hashed value.
      *
-     * @param  string  $hash
+     * @param  string  $hashed
      *
      * @return mixed
      */
-    public function decode($hash)
+    public function decode($hashed)
     {
-        return $this->client->decode($hash);
+        return head(
+            $this->hasher->decode($hashed)
+        );
     }
 }
