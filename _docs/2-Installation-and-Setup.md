@@ -17,7 +17,7 @@ Or by adding the package to your `composer.json`.
 ```json
 {
     "require": {
-        "arcanedev/hasher": "~1.0"
+        "arcanedev/hasher": "~2.0"
     }
 }
 ```

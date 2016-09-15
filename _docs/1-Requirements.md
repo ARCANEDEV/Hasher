@@ -13,5 +13,5 @@
 The Hasher package has a few system requirements:
 
 ```
-- PHP >= 5.6
+- PHP >= 5.6.4
 ```

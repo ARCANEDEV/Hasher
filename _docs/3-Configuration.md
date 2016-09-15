@@ -10,27 +10,43 @@
 
 After you've published the config file `config/hasher.php`, you can customize the settings :
 
-## Clients
+## Defaults
 
 ```php
 return [
     /* ------------------------------------------------------------------------------------------------
-     |  Clients
+     |  Defaults
      | ------------------------------------------------------------------------------------------------
      */
-    'client'  => 'hashids',
+    'default'     => [
+        'driver'     => 'hashids',
+        'connection' => 'main',
+    ],
+    
+    //..
+```
 
-    'clients' => [
-        'hashids'   => Arcanedev\Hasher\Clients\HashidsClient::class,
+You can set your default hashing `driver` and `connection` for your application.
+
+## Clients
+
+```php
+return [
+    //...
+    
+    /* ------------------------------------------------------------------------------------------------
+     |  Drivers
+     | ------------------------------------------------------------------------------------------------
+     */
+    'drivers'     => [
+        'hashids' => Arcanedev\Hasher\Drivers\HashidsDriver::class,
     ],
 
     //...
 ];
 ```
 
-You can specify the default `client` to use for hashing and also the list of `clients` that are supported with the class associated with.
-
-You can also override the hasher class by replacing the *client value*.
+The `drivers` attribute allows you to specify the supported drivers for your application and you can also create & add your own custom driver.  
 
 ## Connections
 
@@ -42,26 +58,23 @@ return [
      |  Connections
      | ------------------------------------------------------------------------------------------------
      */
-    'connection'  => 'main',
-
     'connections' => [
-        'hashids'   => [
-            'main'  => [
-                'salt'      => '',
-                'length'    => 0,
-                'alphabet'  => '',
+        'hashids' => [
+            'main' => [
+                'salt'      => env('HASHIDS_MAIN_SALT', ''),
+                'length'    => env('HASHIDS_MAIN_LENGTH', 0),
+                'alphabet'  => env('HASHIDS_MAIN_ALPHABET', ''),
             ],
-            'alt'   => [
-                'salt'      => '',
-                'length'    => 0,
-                'alphabet'  => '',
-            ],
+            // 'alt' => [
+            //     'salt'      => '',
+            //     'length'    => 0,
+            //     'alphabet'  => '',
+            // ],
         ],
     ],
 ];
 ```
 
-The `connection` is the options for the hasher client to use for hashing.
+The `connections` attribute are options for your hashing driver, it may vary according to your driver.
 
-You can specify multiple connections for each client, like `main` and `alt`, it allows you to hash multiple entities in your app with different hashing results.
-
+You can also specify multiple connections for each driver, like `main` and `alt`, it allows you to hash each entity in your application to different hashing results.
