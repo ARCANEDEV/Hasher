@@ -57,12 +57,8 @@ class HasherServiceProviderTest extends TestCase
     /** @test */
     public function it_can_provides()
     {
-        $expected = [
-            'arcanedev.hasher',
-            'arcanedev.hasher.factory',
+        $this->assertSame([
             \Arcanedev\Hasher\Contracts\HashManager::class,
-        ];
-
-        $this->assertEquals($expected, $this->provider->provides());
+        ], $this->provider->provides());
     }
 }

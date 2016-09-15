@@ -55,14 +55,11 @@ class HashidsDriverTest extends TestCase
     /** @test */
     public function it_assert_it_can_encode_and_decode()
     {
-        $plain  = 123456;
-        $hashed = $this->hasher->encode($plain);
+        $value  = 123456;
+        $hashed = $this->hasher->encode($value);
 
-        $this->assertNotEquals($hashed, $plain);
-
-        $this->assertTrue(
-            in_array($plain, $this->hasher->decode($hashed))
-        );
+        $this->assertNotEquals($hashed, $value);
+        $this->assertSame($value, $this->hasher->decode($hashed));
     }
 
     /* ------------------------------------------------------------------------------------------------
