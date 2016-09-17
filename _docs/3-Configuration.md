@@ -28,7 +28,7 @@ return [
 
 You can set your default hashing `driver` and `connection` for your application.
 
-## Clients
+## Drivers
 
 ```php
 return [
