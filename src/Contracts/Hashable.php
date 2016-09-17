@@ -1,37 +1,17 @@
 <?php namespace Arcanedev\Hasher\Contracts;
 
 /**
- * Interface  HashClient
+ * Interface  Hashable
  *
  * @package   Arcanedev\Hasher\Contracts
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-interface HashClient
+interface Hashable
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
-    /**
-     * Get the client.
-     *
-     * @return mixed
-     */
-    public function getClient();
-
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
-    /**
-     * Make a new Hash client.
-     *
-     * @param  array  $configs
-     *
-     * @return self
-     */
-    public function make(array $configs);
-
     /**
      * Encode the value.
      *
@@ -44,9 +24,9 @@ interface HashClient
     /**
      * Decode the hashed value.
      *
-     * @param  string  $hash
+     * @param  string  $hashed
      *
      * @return mixed
      */
-    public function decode($hash);
+    public function decode($hashed);
 }

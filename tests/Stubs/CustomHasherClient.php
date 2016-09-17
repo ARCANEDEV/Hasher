@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\Hasher\Tests\Stubs;
 
-use Arcanedev\Hasher\Contracts\HashClient;
+use Arcanedev\Hasher\Contracts\HashDriver;
 use Illuminate\Support\Arr;
 
 /**
@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
  * @package  Arcanedev\Hasher\Tests\Stubs
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class CustomHasherClient implements HashClient
+class CustomHasherClient implements HashDriver
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties

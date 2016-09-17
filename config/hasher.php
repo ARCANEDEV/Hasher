@@ -2,33 +2,38 @@
 
 return [
     /* ------------------------------------------------------------------------------------------------
-     |  Clients
+     |  Defaults
      | ------------------------------------------------------------------------------------------------
      */
-    'client'  => 'hashids',
+    'default'     => [
+        'driver'     => 'hashids',
+        'connection' => 'main',
+    ],
 
-    'clients' => [
-        'hashids'   => Arcanedev\Hasher\Clients\HashidsClient::class,
+    /* ------------------------------------------------------------------------------------------------
+     |  Drivers
+     | ------------------------------------------------------------------------------------------------
+     */
+    'drivers'     => [
+        'hashids' => Arcanedev\Hasher\Drivers\HashidsDriver::class,
     ],
 
     /* ------------------------------------------------------------------------------------------------
      |  Connections
      | ------------------------------------------------------------------------------------------------
      */
-    'connection'  => 'main',
-
     'connections' => [
-        'hashids'   => [
-            'main'  => [
-                'salt'      => '',
-                'length'    => 0,
-                'alphabet'  => '',
+        'hashids' => [
+            'main' => [
+                'salt'      => env('HASHIDS_MAIN_SALT', ''),
+                'length'    => env('HASHIDS_MAIN_LENGTH', 0),
+                'alphabet'  => env('HASHIDS_MAIN_ALPHABET', ''),
             ],
-            'alt'   => [
-                'salt'      => '',
-                'length'    => 0,
-                'alphabet'  => '',
-            ],
+            // 'alt' => [
+            //     'salt'      => '',
+            //     'length'    => 0,
+            //     'alphabet'  => '',
+            // ],
         ],
     ],
 ];

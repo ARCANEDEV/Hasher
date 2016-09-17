@@ -6,95 +6,55 @@
  * @package   Arcanedev\Hasher\Contracts
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-interface HashManager
+interface HashManager extends Hashable
 {
     /* ------------------------------------------------------------------------------------------------
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Get the hash client.
-     *
-     * @return HashClient
-     */
-    public function getHashClient();
-
-    /**
-     * Get the default client name.
+     * Get the default driver name.
      *
      * @return string
      */
-    public function getDefaultClient();
+    public function getDefaultDriver();
 
     /**
-     * Get the current client name.
-     *
-     * @return string
-     */
-    public function getCurrentClient();
-
-    /**
-     * Set the hash client name.
-     *
-     * @param  string  $client
-     *
-     * @return self
-     */
-    public function client($client);
-
-    /**
-     * Get the default connection name.
+     * Get the default driver connection.
      *
      * @return string
      */
     public function getDefaultConnection();
 
     /**
-     * Get the current connection name.
-     *
-     * @return string
-     */
-    public function getCurrentConnection();
-
-    /**
      * Set the hasher connection.
      *
      * @param  string  $connection
      *
-     * @return self
+     * @return \Arcanedev\Hasher\HashManager
      */
-    public function connection($connection = 'main');
+    public function connection($connection = null);
 
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Register a hasher client.
+     * Get a driver instance.
      *
-     * @param  string  $name
-     * @param  string  $class
-     * @param  array   $connections
+     * @param  string       $driver
+     * @param  string|null  $connection
      *
-     * @return self
+     * @return \Arcanedev\Hasher\Contracts\HashDriver
      */
-    public function register($name, $class, array $connections = []);
+    public function with($connection = null, $driver = null);
 
     /**
-     * Encode the value.
+     * Get a driver instance.
      *
-     * @param  mixed  $value
+     * @param  string  $driver
      *
-     * @return string
+     * @return \Arcanedev\Hasher\Contracts\HashDriver
      */
-    public function encode($value);
-
-    /**
-     * Decode the hashed value.
-     *
-     * @param  string  $hash
-     *
-     * @return mixed
-     */
-    public function decode($hash);
+    public function driver($driver = null);
 }

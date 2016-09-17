@@ -1,5 +1,6 @@
 <?php namespace Arcanedev\Hasher\Facades;
 
+use Arcanedev\Hasher\Contracts\HashManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -15,5 +16,5 @@ class Hasher extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'arcanedev.hasher'; }
+    protected static function getFacadeAccessor() { return HashManager::class; }
 }

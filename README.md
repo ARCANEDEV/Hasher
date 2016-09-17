@@ -15,11 +15,16 @@
 
 The Hasher package provides a flexible hash manager for Laravel.
 
+This package offers [Hashids](https://github.com/ivanakimov/hashids.php) as default driver with multiple connections. 
+
+ > Hashids is a small open-source library that generates short, unique, non-sequential ids from numbers.  
+
 Feel free to check out the [releases](https://github.com/ARCANEDEV/Hasher/releases), [license](LICENSE.md), and [contribution guidelines](CONTRIBUTING.md).
 
 ### Features
 
   * Easy setup &amp; configuration.
+  * Flexible hash manager.
   * Well documented &amp; IDE Friendly.
   * Well tested with maximum code quality.
   * Laravel `5.0 | 5.1 | 5.2 | 5.3` are supported.
@@ -31,10 +36,6 @@ Feel free to check out the [releases](https://github.com/ARCANEDEV/Hasher/releas
   2. [Installation and Setup](_docs/2-Installation-and-Setup.md)
   3. [Configuration](_docs/3-Configuration.md)
   4. [Usage](_docs/4-Usage.md)
-
-## TODOS
-
-  - [ ] Complete the documentation.
 
 ## Contribution
 

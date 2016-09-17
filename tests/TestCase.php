@@ -63,7 +63,11 @@ abstract class TestCase extends BaseTestCase
         /** @var  \Illuminate\Contracts\Config\Repository  $config */
         $config = $app['config'];
 
-        $config->set('app.key', str_random(32));
+        $config->set('hasher.drivers', [
+            'hashids' => \Arcanedev\Hasher\Drivers\HashidsDriver::class,
+            'custom'  => \Arcanedev\Hasher\Tests\Stubs\CustomHasherClient::class,
+        ]);
+
         $config->set('hasher.connections', [
             'hashids'   => [
                 'main'  => [

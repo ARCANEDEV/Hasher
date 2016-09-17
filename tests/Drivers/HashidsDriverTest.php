@@ -1,21 +1,21 @@
-<?php namespace Arcanedev\Hasher\Tests\Clients;
+<?php namespace Arcanedev\Hasher\Tests\Drivers;
 
-use Arcanedev\Hasher\Clients\HashidsClient;
+use Arcanedev\Hasher\Drivers\HashidsDriver;
 use Arcanedev\Hasher\Tests\TestCase;
 
 /**
- * Class     HashidsClientTest
+ * Class     HashidsDriverTest
  *
  * @package  Arcanedev\Hasher\Tests\Clients
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class HashidsClientTest extends TestCase
+class HashidsDriverTest extends TestCase
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /** @var  HashidsClient */
+    /** @var  \Arcanedev\Hasher\Drivers\HashidsDriver */
     private $hasher;
 
     /* ------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ class HashidsClientTest extends TestCase
     {
         parent::setUp();
 
-        $this->hasher = new HashidsClient;
+        $this->hasher = new HashidsDriver($this->getConfig());
     }
 
     public function tearDown()
@@ -44,38 +44,22 @@ class HashidsClientTest extends TestCase
     public function it_can_be_instantiated()
     {
         $expectations = [
-            \Arcanedev\Hasher\Contracts\HashClient::class,
-            \Arcanedev\Hasher\Clients\HashidsClient::class,
+            \Arcanedev\Hasher\Contracts\HashDriver::class,
+            \Arcanedev\Hasher\Drivers\HashidsDriver::class,
         ];
 
         foreach ($expectations as $expected) {
             $this->assertInstanceOf($expected, $this->hasher);
         }
-
-        $this->assertNull($this->hasher->getClient());
     }
-
-    /** @test */
-    public function it_can_make()
-    {
-        $this->hasher->make($this->getConfig());
-
-        $this->assertInstanceOf(\Hashids\Hashids::class, $this->hasher->getClient());
-    }
-
     /** @test */
     public function it_assert_it_can_encode_and_decode()
     {
-        $this->hasher->make($this->getConfig());
+        $value  = 123456;
+        $hashed = $this->hasher->encode($value);
 
-        $plain  = 123456;
-        $hashed = $this->hasher->encode($plain);
-
-        $this->assertNotEquals($hashed, $plain);
-
-        $this->assertTrue(
-            in_array($plain, $this->hasher->decode($hashed))
-        );
+        $this->assertNotEquals($hashed, $value);
+        $this->assertSame($value, $this->hasher->decode($hashed));
     }
 
     /* ------------------------------------------------------------------------------------------------
