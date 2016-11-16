@@ -18,7 +18,7 @@
     "require": {
         "php":               ">=5.6.4",
         "arcanedev/support": "~3.0",
-        "hashids/hashids":   "~1.0"
+        "hashids/hashids":   "~2.0"
     },
     "require-dev": {
         "phpunit/phpcov":    "~3.0",
