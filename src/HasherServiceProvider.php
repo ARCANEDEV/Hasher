@@ -86,8 +86,6 @@ class HasherServiceProvider extends ServiceProvider
      */
     private function registerHasherService()
     {
-        $this->singleton(Contracts\HashManager::class, function ($app) {
-            return new HashManager($app);
-        });
+        $this->singleton(Contracts\HashManager::class, HashManager::class);
     }
 }
