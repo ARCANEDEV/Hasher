@@ -1,7 +1,6 @@
 # Hasher [![Packagist License][badge_license]](LICENSE.md) [![For Laravel 5][badge_laravel]][link-github-repo]
 
 [![Travis Status][badge_build]][link-travis]
-[![HHVM Status][badge_hhvm]][link-hhvm]
 [![Coverage Status][badge_coverage]][link-scrutinizer]
 [![Scrutinizer Code Quality][badge_quality]][link-scrutinizer]
 [![SensioLabs Insight][badge_insight]][link-insight]
@@ -27,7 +26,7 @@ Feel free to check out the [releases](https://github.com/ARCANEDEV/Hasher/releas
   * Flexible hash manager.
   * Well documented &amp; IDE Friendly.
   * Well tested with maximum code quality.
-  * Laravel `5.0 | 5.1 | 5.2 | 5.3` are supported.
+  * Laravel `5.0 | 5.1 | 5.2 | 5.3 | 5.4` are supported.
   * Made with :heart: &amp; :coffee:.
 
 ## Table of contents
@@ -54,7 +53,6 @@ If you discover any security related issues, please email arcanedev.maroc@gmail.
 [badge_laravel]:   https://img.shields.io/badge/For%20Laravel-5.x-orange.svg?style=flat-square
 
 [badge_build]:     https://img.shields.io/travis/ARCANEDEV/Hasher.svg?style=flat-square
-[badge_hhvm]:      https://img.shields.io/hhvm/arcanedev/hasher.svg?style=flat-square
 [badge_coverage]:  https://img.shields.io/scrutinizer/coverage/g/ARCANEDEV/Hasher.svg?style=flat-square
 [badge_quality]:   https://img.shields.io/scrutinizer/g/ARCANEDEV/Hasher.svg?style=flat-square
 [badge_insight]:   https://img.shields.io/sensiolabs/i/0c427742-b488-4bff-87ed-cb1d59217d20.svg?style=flat-square
@@ -70,6 +68,5 @@ If you discover any security related issues, please email arcanedev.maroc@gmail.
 [link-contributors]:  https://github.com/ARCANEDEV/Hasher/graphs/contributors
 [link-packagist]:     https://packagist.org/packages/arcanedev/hasher
 [link-travis]:        https://travis-ci.org/ARCANEDEV/Hasher
-[link-hhvm]:          http://hhvm.h4cc.de/package/arcanedev/hasher
 [link-scrutinizer]:   https://scrutinizer-ci.com/g/ARCANEDEV/Hasher/?branch=master
 [link-insight]:       https://insight.sensiolabs.com/projects/0c427742-b488-4bff-87ed-cb1d59217d20
