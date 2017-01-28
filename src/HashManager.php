@@ -135,9 +135,9 @@ class HashManager extends Manager implements HashManagerContract
     private function buildDriver($name, $class)
     {
         $connection           = $this->getDefaultConnection();
-        $this->drivers[$name] = $this->app->make($class, [
+        $this->drivers[$name] = new $class(
             $this->getHasherConfig("connections.$name.$connection", [])
-        ]);
+        );
 
         return $this->drivers[$name];
     }
