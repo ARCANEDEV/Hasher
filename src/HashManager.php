@@ -1,8 +1,7 @@
 <?php namespace Arcanedev\Hasher;
 
 use Arcanedev\Hasher\Contracts\HashManager as HashManagerContract;
-use Arcanedev\Support\Manager;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Manager;
 
 /**
  * Class     HashManager
@@ -28,11 +27,11 @@ class HashManager extends Manager implements HashManagerContract
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Create a new manager instance.
+     * HashManager constructor.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param  \Illuminate\Foundation\Application  $app
      */
-    public function __construct(Application $app)
+    public function __construct($app)
     {
         parent::__construct($app);
 
