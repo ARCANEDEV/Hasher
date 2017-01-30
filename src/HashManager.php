@@ -2,7 +2,6 @@
 
 use Arcanedev\Hasher\Contracts\HashManager as HashManagerContract;
 use Arcanedev\Support\Manager;
-use Illuminate\Contracts\Foundation\Application;
 
 /**
  * Class     HashManager
@@ -30,9 +29,9 @@ class HashManager extends Manager implements HashManagerContract
     /**
      * Create a new manager instance.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param  \Illuminate\Foundation\Application  $app
      */
-    public function __construct(Application $app)
+    public function __construct($app)
     {
         parent::__construct($app);
 
