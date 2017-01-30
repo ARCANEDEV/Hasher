@@ -1,7 +1,7 @@
 <?php namespace Arcanedev\Hasher;
 
 use Arcanedev\Hasher\Contracts\HashManager as HashManagerContract;
-use Arcanedev\Support\Manager;
+use Illuminate\Support\Manager;
 use Illuminate\Contracts\Foundation\Application;
 
 /**
