@@ -179,6 +179,6 @@ class HashManager extends Manager implements HashManagerContract
      */
     protected function getHasherConfig($name, $default = null)
     {
-        return $this->app['config']->get("hasher.$name", $default);
+        return $this->app->make('config')->get("hasher.$name", $default);
     }
 }

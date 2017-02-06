@@ -2,11 +2,9 @@
 
 ## Table of contents
 
-0. [Home](0-Home.md)
-1. [Requirements](1-Requirements.md)
-2. [Installation and Setup](2-Installation-and-Setup.md)
-3. [Configuration](3-Configuration.md)
-4. [Usage](4-Usage.md)
+  1. [Installation and Setup](1-Installation-and-Setup.md)
+  2. [Configuration](2-Configuration.md)
+  3. [Usage](3-Usage.md)
 
 After you've published the config file `config/hasher.php`, you can customize the settings :
 
@@ -61,14 +59,14 @@ return [
     'connections' => [
         'hashids' => [
             'main' => [
-                'salt'      => env('HASHIDS_MAIN_SALT', ''),
-                'length'    => env('HASHIDS_MAIN_LENGTH', 0),
-                'alphabet'  => env('HASHIDS_MAIN_ALPHABET', ''),
+                'salt'     => env('HASHIDS_MAIN_SALT', ''),
+                'length'   => env('HASHIDS_MAIN_LENGTH', 0),
+                'alphabet' => env('HASHIDS_MAIN_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'),
             ],
             // 'alt' => [
-            //     'salt'      => '',
-            //     'length'    => 0,
-            //     'alphabet'  => '',
+            //     'salt'     => '',
+            //     'length'   => 0,
+            //     'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
             // ],
         ],
     ],

@@ -1,4 +1,20 @@
-# 2. Version Compatibility
+# 2. Installation
+
+## Table of contents
+
+  1. [Installation and Setup](1-Installation-and-Setup.md)
+  2. [Configuration](2-Configuration.md)
+  3. [Usage](3-Usage.md)
+
+## Server Requirements
+
+The Hasher package has a few system requirements:
+
+```
+- PHP >= 5.6.4
+```
+
+## Version Compatibility
 
 | Hasher                         | Laravel                                                                                                             |
 |:-------------------------------|:--------------------------------------------------------------------------------------------------------------------|
@@ -13,3 +29,41 @@
 
 [hasher_2_0_x]: https://img.shields.io/badge/version-2.0.*-blue.svg?style=flat-square "Hasher v2.0.*"
 [hasher_2_1_x]: https://img.shields.io/badge/version-2.1.*-blue.svg?style=flat-square "Hasher v2.1.*"
+
+## Composer
+
+You can install this package via [Composer](http://getcomposer.org/) by running this command: `composer require arcanedev/hasher`.
+
+## Laravel
+
+### Setup
+
+Once the package is installed, you can register the service provider in `config/app.php` in the `providers` array:
+
+```php
+// config/app.php
+
+'providers' => [
+    ...
+    Arcanedev\Hasher\HasherServiceProvider::class,
+],
+```
+
+(**Optional**) And for the Facades:
+
+```php
+// config/app.php
+
+'aliases' => [
+    ...
+    'Hasher' => Arcanedev\Hasher\Facades\Hasher::class,
+];
+```
+
+### Artisan commands
+
+To publish the config file, run this command:
+
+```bash
+php artisan vendor:publish --provider="Arcanedev\Hasher\HasherServiceProvider"
+```

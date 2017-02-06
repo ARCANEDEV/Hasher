@@ -33,7 +33,7 @@ class HashidsDriver implements HashDriver
         $this->hasher = new Hashids(
             Arr::get($options, 'salt', ''),
             Arr::get($options, 'length', 0),
-            Arr::get($options, 'alphabet', '')
+            Arr::get($options, 'alphabet', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
         );
     }
 
