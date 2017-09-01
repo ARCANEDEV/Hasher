@@ -10,10 +10,11 @@ use Arcanedev\Support\PackageServiceProvider as ServiceProvider;
  */
 class HasherServiceProvider extends ServiceProvider
 {
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Properties
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+
     /**
      * Package name.
      *
@@ -28,31 +29,24 @@ class HasherServiceProvider extends ServiceProvider
      */
     protected $defer = true;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
      */
-    /**
-     * Get the base path of the package.
-     *
-     * @return string
-     */
-    public function getBasePath()
-    {
-        return dirname(__DIR__);
-    }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
     /**
      * Register the service provider.
      */
     public function register()
     {
+        parent::register();
+
         $this->registerConfig();
-        $this->registerHasherService();
+
+        // Services
+        $this->singleton(Contracts\HashManager::class, function ($app) {
+            return new HashManager($app);
+        });
     }
 
     /**
@@ -75,19 +69,5 @@ class HasherServiceProvider extends ServiceProvider
         return [
             Contracts\HashManager::class,
         ];
-    }
-
-    /* ------------------------------------------------------------------------------------------------
-     |  Service Functions
-     | ------------------------------------------------------------------------------------------------
-     */
-    /**
-     * Register Hasher service.
-     */
-    private function registerHasherService()
-    {
-        $this->singleton(Contracts\HashManager::class, function ($app) {
-            return new HashManager($app);
-        });
     }
 }

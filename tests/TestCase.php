@@ -10,10 +10,11 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
  */
 abstract class TestCase extends BaseTestCase
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
      */
+
     public function setUp()
     {
         parent::setUp();
@@ -26,10 +27,6 @@ abstract class TestCase extends BaseTestCase
         parent::tearDown();
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Laravel Functions
-     | ------------------------------------------------------------------------------------------------
-     */
     /**
      * Get package providers.
      *
@@ -58,6 +55,11 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     */
     protected function getEnvironmentSetUp($app)
     {
         /** @var  \Illuminate\Contracts\Config\Repository  $config */

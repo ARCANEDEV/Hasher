@@ -10,17 +10,19 @@ use Arcanedev\Hasher\HasherServiceProvider;
  */
 class HasherServiceProviderTest extends TestCase
 {
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Properties
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+
     /** @var \Arcanedev\Hasher\HasherServiceProvider */
     private $provider;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
      */
+
     public function setUp()
     {
         parent::setUp();
@@ -35,10 +37,11 @@ class HasherServiceProviderTest extends TestCase
         parent::tearDown();
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Test Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Tests
+     | -----------------------------------------------------------------
      */
+
     /** @test */
     public function it_can_be_instantiated()
     {
@@ -57,8 +60,10 @@ class HasherServiceProviderTest extends TestCase
     /** @test */
     public function it_can_provides()
     {
-        $this->assertSame([
+        $expected = [
             \Arcanedev\Hasher\Contracts\HashManager::class,
-        ], $this->provider->provides());
+        ];
+
+        $this->assertSame($expected, $this->provider->provides());
     }
 }
