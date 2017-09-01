@@ -16,13 +16,13 @@
     "type":    "library",
     "license": "MIT",
     "require": {
-        "php":               ">=5.6.4",
+        "php":               ">=7.0",
         "arcanedev/support": "~4.0",
         "hashids/hashids":   "~2.0"
     },
     "require-dev": {
-        "phpunit/phpcov":  "~3.0",
-        "phpunit/phpunit": "~5.0"
+        "phpunit/phpunit": "~6.0",
+        "phpunit/phpcov":  "~4.0"
     },
     "autoload": {
         "psr-4": {
@@ -35,12 +35,17 @@
             "Arcanedev\\Hasher\\Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Arcanedev\\Hasher\\HasherServiceProvider"
+            ],
+            "aliases": {
+                "Hasher": "Arcanedev\\Hasher\\Facades\\Hasher"
+            }
+        }
+    },
     "scripts": {
         "testbench": "composer require --dev \"orchestra/testbench=~3.0\""
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.1-dev"
-        }
     }
 }

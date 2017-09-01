@@ -62,9 +62,7 @@ class HashManager extends Manager implements HashManagerContract
      */
     public function getDefaultConnection()
     {
-        return is_null($this->connection)
-            ? $this->getHasherConfig('default.connection', 'main')
-            : $this->connection;
+        return $this->connection ?? $this->getHasherConfig('default.connection', 'main');
     }
 
     /**
@@ -137,12 +135,11 @@ class HashManager extends Manager implements HashManagerContract
      */
     private function buildDriver($name, $class)
     {
-        $connection           = $this->getDefaultConnection();
-        $this->drivers[$name] = new $class(
+        $connection = $this->getDefaultConnection();
+
+        return $this->drivers[$name] = new $class(
             $this->getHasherConfig("connections.$name.$connection", [])
         );
-
-        return $this->drivers[$name];
     }
 
     /**
