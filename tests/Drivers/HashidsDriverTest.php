@@ -28,7 +28,11 @@ class HashidsDriverTest extends TestCase
     {
         parent::setUp();
 
-        $this->hasher = new HashidsDriver($this->getConfig());
+        $this->hasher = new HashidsDriver([
+            'salt'     => 'This is my main salt',
+            'length'   => 8,
+            'alphabet' => 'abcdefghij1234567890',
+        ]);
     }
 
     protected function tearDown()
@@ -55,6 +59,7 @@ class HashidsDriverTest extends TestCase
             static::assertInstanceOf($expected, $this->hasher);
         }
     }
+
     /** @test */
     public function it_assert_it_can_encode_and_decode()
     {
@@ -63,24 +68,5 @@ class HashidsDriverTest extends TestCase
 
         static::assertNotEquals($hashed, $value);
         static::assertSame($value, $this->hasher->decode($hashed));
-    }
-
-    /* -----------------------------------------------------------------
-     |  Other Methods
-     | -----------------------------------------------------------------
-     */
-
-    /**
-     * Get Hashids config.
-     *
-     * @return array
-     */
-    private function getConfig()
-    {
-        return [
-            'salt'      => 'This is my main salt',
-            'length'    => 8,
-            'alphabet'  => 'abcdefghij1234567890',
-        ];
     }
 }

@@ -12,13 +12,15 @@ After you've published the config file `config/hasher.php`, you can customize th
 
 ```php
 return [
-    /* ------------------------------------------------------------------------------------------------
+    
+    /* -----------------------------------------------------------------
      |  Defaults
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+         
     'default'     => [
-        'driver'     => 'hashids',
-        'connection' => 'main',
+        'driver' => 'hashids',
+        'option' => 'main',
     ],
     
     //..
@@ -32,47 +34,35 @@ You can set your default hashing `driver` and `connection` for your application.
 return [
     //...
     
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Drivers
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+     
     'drivers'     => [
-        'hashids' => Arcanedev\Hasher\Drivers\HashidsDriver::class,
+
+        'hashids' => [
+            'driver'  => Arcanedev\Hasher\Drivers\HashidsDriver::class,
+
+            'options' => [
+                'main' => [
+                    'salt'     => env('HASHIDS_MAIN_SALT', ''),
+                    'length'   => env('HASHIDS_MAIN_LENGTH', 0),
+                    'alphabet' => env('HASHIDS_MAIN_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'),
+                ],
+
+                //
+            ],
+        ],
+
     ],
 
     //...
 ];
 ```
 
-The `drivers` attribute allows you to specify the supported drivers for your application and you can also create & add your own custom driver.  
+The `drivers` attribute allows you to specify the supported drivers for your application and you can also create & add your own custom `class` & `options`.  
 
-## Connections
-
-```php
-return [
-    // ...
-    
-    /* ------------------------------------------------------------------------------------------------
-     |  Connections
-     | ------------------------------------------------------------------------------------------------
-     */
-    'connections' => [
-        'hashids' => [
-            'main' => [
-                'salt'     => env('HASHIDS_MAIN_SALT', ''),
-                'length'   => env('HASHIDS_MAIN_LENGTH', 0),
-                'alphabet' => env('HASHIDS_MAIN_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'),
-            ],
-            // 'alt' => [
-            //     'salt'     => '',
-            //     'length'   => 0,
-            //     'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
-            // ],
-        ],
-    ],
-];
-```
-
-The `connections` attribute are options for your hashing driver, it may vary according to your driver.
+The `options` attribute are options for your hashing driver, it may vary according to your driver.
 
 You can also specify multiple connections for each driver, like `main` and `alt`, it allows you to hash each entity in your application to different hashing results.

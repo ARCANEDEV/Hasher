@@ -16,13 +16,13 @@ if ( ! function_exists('hash_with')) {
     /**
      * Get the Hash Driver instance.
      *
-     * @param  string       $connection
+     * @param  string       $option
      * @param  string|null  $driver
      *
      * @return \Arcanedev\Hasher\Contracts\HashDriver
      */
-    function hash_with($connection, $driver = null)
+    function hash_with($option, $driver = null)
     {
-        return hasher()->with($connection, $driver);
+        return hasher()->with($option, $driver);
     }
 }

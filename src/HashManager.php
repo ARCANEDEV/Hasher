@@ -1,6 +1,7 @@
 <?php namespace Arcanedev\Hasher;
 
 use Arcanedev\Hasher\Contracts\HashManager as HashManagerContract;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Manager;
 
 /**
@@ -17,11 +18,11 @@ class HashManager extends Manager implements HashManagerContract
      */
 
     /**
-     * The driver connection.
+     * The driver option.
      *
      * @var  string
      */
-    protected $connection;
+    protected $option;
 
     /* -----------------------------------------------------------------
      |  Constructor
@@ -60,22 +61,22 @@ class HashManager extends Manager implements HashManagerContract
      *
      * @return string
      */
-    public function getDefaultConnection()
+    public function getDefaultOption()
     {
-        return $this->connection ?? $this->getHasherConfig('default.connection', 'main');
+        return $this->option ?? $this->getHasherConfig('default.option', 'main');
     }
 
     /**
-     * Set the hasher connection.
+     * Set the hasher option.
      *
-     * @param  string  $connection
+     * @param  string  $option
      *
      * @return \Arcanedev\Hasher\HashManager
      */
-    public function connection($connection = null)
+    public function option($option = null)
     {
-        if ( ! is_null($connection)) {
-            $this->connection = $connection;
+        if ( ! is_null($option)) {
+            $this->option = $option;
             $this->buildDrivers();
         }
 
@@ -91,14 +92,13 @@ class HashManager extends Manager implements HashManagerContract
      * Get a driver instance.
      *
      * @param  string       $driver
-     * @param  string|null  $connection
+     * @param  string|null  $option
      *
      * @return \Arcanedev\Hasher\Contracts\HashDriver
      */
-    public function with($connection = null, $driver = null)
+    public function with($option = null, $driver = null)
     {
-        return $this->connection($connection)
-                    ->driver($driver);
+        return $this->option($option)->driver($driver);
     }
 
     /**
@@ -120,8 +120,8 @@ class HashManager extends Manager implements HashManagerContract
     {
         $drivers = $this->getHasherConfig('drivers', []);
 
-        foreach ($drivers as $name => $class) {
-            $this->buildDriver($name, $class);
+        foreach ($drivers as $name => $driver) {
+            $this->buildDriver($name, $driver);
         }
     }
 
@@ -129,16 +129,14 @@ class HashManager extends Manager implements HashManagerContract
      * Build the driver.
      *
      * @param  string  $name
-     * @param  string  $class
+     * @param  array  $driver
      *
-     * @return Contracts\HashDriver
+     * @return \Arcanedev\Hasher\Contracts\HashDriver
      */
-    private function buildDriver($name, $class)
+    private function buildDriver($name, array $driver)
     {
-        $connection = $this->getDefaultConnection();
-
-        return $this->drivers[$name] = new $class(
-            $this->getHasherConfig("connections.$name.$connection", [])
+        return $this->drivers[$name] = new $driver['driver'](
+            Arr::get($driver, 'options.'.$this->getDefaultOption(), [])
         );
     }
 

@@ -22,11 +22,6 @@ abstract class TestCase extends BaseTestCase
         $this->app->loadDeferredProviders();
     }
 
-    protected function tearDown()
-    {
-        parent::tearDown();
-    }
-
     /**
      * Get package providers.
      *
@@ -66,22 +61,24 @@ abstract class TestCase extends BaseTestCase
         $config = $app['config'];
 
         $config->set('hasher.drivers', [
-            'hashids' => \Arcanedev\Hasher\Drivers\HashidsDriver::class,
-            'custom'  => \Arcanedev\Hasher\Tests\Stubs\CustomHasherClient::class,
-        ]);
+            'hashids' => [
+                'driver'  => \Arcanedev\Hasher\Drivers\HashidsDriver::class,
+                'options' => [
+                    'main'  => [
+                        'salt'      => 'This is my main salt',
+                        'length'    => 8,
+                        'alphabet'  => 'abcdefghij1234567890',
+                    ],
+                    'alt'   => [
+                        'salt'      => 'This is my alternative salt',
+                        'length'    => 6,
+                        'alphabet'  => 'ABCDEFGHIJ1234567890',
+                    ],
+                ],
+            ],
 
-        $config->set('hasher.connections', [
-            'hashids'   => [
-                'main'  => [
-                    'salt'      => 'This is my main salt',
-                    'length'    => 8,
-                    'alphabet'  => 'abcdefghij1234567890',
-                ],
-                'alt'   => [
-                    'salt'      => 'This is my alternative salt',
-                    'length'    => 6,
-                    'alphabet'  => 'ABCDEFGHIJ1234567890',
-                ],
+            'custom'  => [
+                'driver' => \Arcanedev\Hasher\Tests\Stubs\CustomHasherClient::class
             ],
         ]);
     }
