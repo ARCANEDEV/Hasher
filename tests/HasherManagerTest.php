@@ -21,14 +21,14 @@ class HasherManagerTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
         $this->manager = $this->app->make(\Arcanedev\Hasher\Contracts\HashManager::class);
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->manager);
 
@@ -49,20 +49,20 @@ class HasherManagerTest extends TestCase
         ];
 
         foreach ($expectations as $expected) {
-            $this->assertInstanceOf($expected, $this->manager);
+            static::assertInstanceOf($expected, $this->manager);
         }
     }
 
     /** @test */
     public function it_can_get_default_driver()
     {
-        $this->assertSame('hashids', $this->manager->getDefaultDriver());
+        static::assertSame('hashids', $this->manager->getDefaultDriver());
     }
 
     /** @test */
     public function it_can_get_default_connection()
     {
-        $this->assertSame('main', $this->manager->getDefaultConnection());
+        static::assertSame('main', $this->manager->getDefaultConnection());
     }
 
     /** @test */
@@ -70,7 +70,7 @@ class HasherManagerTest extends TestCase
     {
         $this->manager->connection('alt');
 
-        $this->assertSame('alt', $this->manager->getDefaultConnection());
+        static::assertSame('alt', $this->manager->getDefaultConnection());
     }
 
     /** @test */
@@ -84,7 +84,7 @@ class HasherManagerTest extends TestCase
         ];
 
         foreach ($expectations as $expected) {
-            $this->assertInstanceOf($expected, $driver);
+            static::assertInstanceOf($expected, $driver);
         }
     }
 
@@ -99,7 +99,7 @@ class HasherManagerTest extends TestCase
         ];
 
         foreach ($expectations as $expected) {
-            $this->assertInstanceOf($expected, $driver);
+            static::assertInstanceOf($expected, $driver);
         }
     }
 
@@ -108,7 +108,7 @@ class HasherManagerTest extends TestCase
     {
         $driver = $this->manager->with('alt', 'custom');
 
-        $this->assertSame('alt', $this->manager->getDefaultConnection());
+        static::assertSame('alt', $this->manager->getDefaultConnection());
 
         $expectations = [
             \Arcanedev\Hasher\Contracts\HashDriver::class,
@@ -116,7 +116,7 @@ class HasherManagerTest extends TestCase
         ];
 
         foreach ($expectations as $expected) {
-            $this->assertInstanceOf($expected, $driver);
+            static::assertInstanceOf($expected, $driver);
         }
     }
 
@@ -130,8 +130,8 @@ class HasherManagerTest extends TestCase
         $mainHashed = $mainDriver->encode($value);
         $altHashed  = $altDriver->encode($value);
 
-        $this->assertNotSame($mainHashed, $altHashed);
-        $this->assertSame(
+        static::assertNotSame($mainHashed, $altHashed);
+        static::assertSame(
             $mainDriver->decode($mainHashed),
             $altDriver->decode($altHashed)
         );
@@ -147,8 +147,8 @@ class HasherManagerTest extends TestCase
         $mainHashed = $mainDriver->encode($value);
         $altHashed  = $altDriver->encode($value);
 
-        $this->assertNotSame($mainHashed, $altHashed);
-        $this->assertSame(
+        static::assertNotSame($mainHashed, $altHashed);
+        static::assertSame(
             $mainDriver->decode($mainHashed),
             $altDriver->decode($altHashed)
         );
@@ -160,7 +160,7 @@ class HasherManagerTest extends TestCase
         $value  = 123456;
         $hashed = $this->manager->encode($value);
 
-        $this->assertNotSame($value, $hashed);
-        $this->assertSame($value, $this->manager->decode($hashed));
+        static::assertNotSame($value, $hashed);
+        static::assertSame($value, $this->manager->decode($hashed));
     }
 }

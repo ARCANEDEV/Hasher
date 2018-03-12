@@ -15,14 +15,14 @@ abstract class TestCase extends BaseTestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
         $this->app->loadDeferredProviders();
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         parent::tearDown();
     }

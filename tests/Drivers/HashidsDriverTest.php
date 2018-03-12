@@ -24,14 +24,14 @@ class HashidsDriverTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
         $this->hasher = new HashidsDriver($this->getConfig());
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->hasher);
 
@@ -52,7 +52,7 @@ class HashidsDriverTest extends TestCase
         ];
 
         foreach ($expectations as $expected) {
-            $this->assertInstanceOf($expected, $this->hasher);
+            static::assertInstanceOf($expected, $this->hasher);
         }
     }
     /** @test */
@@ -61,8 +61,8 @@ class HashidsDriverTest extends TestCase
         $value  = 123456;
         $hashed = $this->hasher->encode($value);
 
-        $this->assertNotEquals($hashed, $value);
-        $this->assertSame($value, $this->hasher->decode($hashed));
+        static::assertNotEquals($hashed, $value);
+        static::assertSame($value, $this->hasher->decode($hashed));
     }
 
     /* -----------------------------------------------------------------
