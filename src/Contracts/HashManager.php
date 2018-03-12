@@ -21,20 +21,20 @@ interface HashManager extends HashDriver
     public function getDefaultDriver();
 
     /**
-     * Get the default driver connection.
+     * Get the default driver option.
      *
      * @return string
      */
-    public function getDefaultConnection();
+    public function getDefaultOption();
 
     /**
-     * Set the hasher connection.
+     * Set the hasher option.
      *
-     * @param  string  $connection
+     * @param  string  $option
      *
      * @return \Arcanedev\Hasher\HashManager
      */
-    public function connection($connection = null);
+    public function option($option = null);
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -45,11 +45,11 @@ interface HashManager extends HashDriver
      * Get a driver instance.
      *
      * @param  string       $driver
-     * @param  string|null  $connection
+     * @param  string|null  $option
      *
      * @return \Arcanedev\Hasher\Contracts\HashDriver
      */
-    public function with($connection = null, $driver = null);
+    public function with($option = null, $driver = null);
 
     /**
      * Get a driver instance.

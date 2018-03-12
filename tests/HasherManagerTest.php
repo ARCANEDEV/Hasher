@@ -60,17 +60,17 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_default_connection()
+    public function it_can_get_default_option()
     {
-        static::assertSame('main', $this->manager->getDefaultConnection());
+        static::assertSame('main', $this->manager->getDefaultOption());
     }
 
     /** @test */
-    public function it_can_set_default_connection()
+    public function it_can_set_default_option()
     {
-        $this->manager->connection('alt');
+        $this->manager->option('alt');
 
-        static::assertSame('alt', $this->manager->getDefaultConnection());
+        static::assertSame('alt', $this->manager->getDefaultOption());
     }
 
     /** @test */
@@ -104,11 +104,11 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_hash_driver_with_name_and_connection()
+    public function it_can_get_hash_driver_with_name_and_option()
     {
         $driver = $this->manager->with('alt', 'custom');
 
-        static::assertSame('alt', $this->manager->getDefaultConnection());
+        static::assertSame('alt', $this->manager->getDefaultOption());
 
         $expectations = [
             \Arcanedev\Hasher\Contracts\HashDriver::class,
@@ -124,8 +124,8 @@ class HasherManagerTest extends TestCase
     public function it_can_encode_and_decode()
     {
         $value      = 123456;
-        $mainDriver = $this->manager->connection('main')->driver();
-        $altDriver  = $this->manager->connection('alt')->driver();
+        $mainDriver = $this->manager->option('main')->driver();
+        $altDriver  = $this->manager->option('alt')->driver();
 
         $mainHashed = $mainDriver->encode($value);
         $altHashed  = $altDriver->encode($value);

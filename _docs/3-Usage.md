@@ -67,7 +67,7 @@ The `driver()` method accepts an argument as the hash driver name. So you can do
 $hasher = hasher()->driver('custom-driver');
 ```
 
-And to get your default driver with different `connection`, you can use the `with()` method for that:
+And to get your default driver with different `option`, you can use the `with()` method for that:
 
 ```php
 $hasher = hasher()->with('alt');
@@ -79,7 +79,7 @@ You can also use another helper if you don't like calling multiple methods:
 $hasher = hash_with('alt');
 ```
  
-Of course, you can specify the `connection` and the `driver` at the same time with the same helpers:
+Of course, you can specify the `option` and the `driver` at the same time with the same helpers:
 
 ```php
 $hasher = hasher()->with('alt', 'custom-driver');
@@ -97,11 +97,11 @@ Other useful methods:
 // To get your default driver name
 $driverName = hasher()->getDefaultDriver();
 
-// To get your default connection name 
-$connection = hasher()->getDefaultConnection()
+// To get your default option name 
+$option = hasher()->getDefaultOption()
 
-// To set the default connection name
-$manager    = hasher()->connection('alt');
+// To set the default option name
+$manager = hasher()->option('alt');
 ```
 
 ## Facade
@@ -197,7 +197,7 @@ class CustomDriver implements HashDriver
 }
 ```
 
-As you can see, the `__constructor` will receive an array as argument containing the selected `connection` settings.
+As you can see, the `__constructor` will receive an array as argument containing the selected `option` settings.
 
  > Check the [HashidsDriver](https://github.com/ARCANEDEV/Hasher/blob/master/src/Drivers/HashidsDriver.php) class as example.
 
@@ -209,41 +209,32 @@ After that, you need to add your driver to the supported `drivers` in your `conf
 return [
     //...
 
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Drivers
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
-    'drivers'     => [
-        'hashids' => Arcanedev\Hasher\Drivers\HashidsDriver::class,
-        'custom'  => App\Hashers\CustomDriver::class
-    ],
-
-    //...
-];
-```
-
-This is optional but you can specify a `connection` settings (or multiple) for your `custom` driver:
-
-```php
-<?php
-return [
-    //...
     
-    /* ------------------------------------------------------------------------------------------------
-     |  Connections
-     | ------------------------------------------------------------------------------------------------
-     */
-    'connections' => [
-        'custom' => [
-            'main' => [
-                'option-1' => 'value-1',
-                'option-2' => 'value-2',
-                //...
+    'drivers'     => [
+        'hashids' => [
+            'driver'  => Arcanedev\Hasher\Drivers\HashidsDriver::class,
+            'options' => [
+                'main' => [
+                    'salt'     => env('HASHIDS_MAIN_SALT', ''),
+                    'length'   => env('HASHIDS_MAIN_LENGTH', 0),
+                    'alphabet' => env('HASHIDS_MAIN_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'),
+                ],
+  
+                //
             ],
         ],
-        'hashids' => [
-            //
-        ],
+        
+        'custom'  => [
+            'driver' => App\Hashers\CustomDriver::class,
+        ]
     ],
+
+    //...
 ];
 ```
+
+This is optional but you can specify a `option` settings (or multiple) for your `custom` driver.
