@@ -14,6 +14,7 @@
 | ![Hasher v2.1.x][hasher_2_1_x] | ![Laravel v5.4][laravel_5_4]                                                                                        |
 | ![Hasher v2.2.x][hasher_2_2_x] | ![Laravel v5.5][laravel_5_5]                                                                                        |
 | ![Hasher v2.3.x][hasher_2_3_x] | ![Laravel v5.6][laravel_5_6]                                                                                        |
+| ![Hasher v2.4.x][hasher_2_4_x] | ![Laravel v5.7][laravel_5_7]                                                                                        |
 
 [laravel_5_0]:  https://img.shields.io/badge/v5.0-supported-brightgreen.svg?style=flat-square "Laravel v5.0"
 [laravel_5_1]:  https://img.shields.io/badge/v5.1-supported-brightgreen.svg?style=flat-square "Laravel v5.1"
@@ -22,11 +23,13 @@
 [laravel_5_4]:  https://img.shields.io/badge/v5.4-supported-brightgreen.svg?style=flat-square "Laravel v5.4"
 [laravel_5_5]:  https://img.shields.io/badge/v5.5-supported-brightgreen.svg?style=flat-square "Laravel v5.5"
 [laravel_5_6]:  https://img.shields.io/badge/v5.6-supported-brightgreen.svg?style=flat-square "Laravel v5.6"
+[laravel_5_7]:  https://img.shields.io/badge/v5.7-supported-brightgreen.svg?style=flat-square "Laravel v5.7"
 
 [hasher_2_0_x]: https://img.shields.io/badge/version-2.0.*-blue.svg?style=flat-square "Hasher v2.0.*"
 [hasher_2_1_x]: https://img.shields.io/badge/version-2.1.*-blue.svg?style=flat-square "Hasher v2.1.*"
 [hasher_2_2_x]: https://img.shields.io/badge/version-2.2.*-blue.svg?style=flat-square "Hasher v2.2.*"
 [hasher_2_3_x]: https://img.shields.io/badge/version-2.3.*-blue.svg?style=flat-square "Hasher v2.3.*"
+[hasher_2_4_x]: https://img.shields.io/badge/version-2.4.*-blue.svg?style=flat-square "Hasher v2.4.*"
 
 ## Composer
 
