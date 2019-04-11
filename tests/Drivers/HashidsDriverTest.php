@@ -24,18 +24,18 @@ class HashidsDriverTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->hasher = new HashidsDriver([
-            'salt'     => 'This is my main salt',
+            'salt'     => "We don't have salt. Is pepper OK ?",
             'length'   => 8,
             'alphabet' => 'abcdefghij1234567890',
         ]);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->hasher);
 

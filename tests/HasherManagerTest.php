@@ -21,14 +21,14 @@ class HasherManagerTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->manager = $this->app->make(\Arcanedev\Hasher\Contracts\HashManager::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->manager);
 
@@ -141,8 +141,8 @@ class HasherManagerTest extends TestCase
     public function it_can_encode_and_decode_with_helper()
     {
         $value      = 123456;
-        $mainDriver = hash_with('main');
-        $altDriver  = hash_with('alt');
+        $mainDriver = hasher()->with('main');
+        $altDriver  = hasher()->with('alt');
 
         $mainHashed = $mainDriver->encode($value);
         $altHashed  = $altDriver->encode($value);

@@ -15,7 +15,7 @@ abstract class TestCase extends BaseTestCase
      | -----------------------------------------------------------------
      */
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -33,20 +33,6 @@ abstract class TestCase extends BaseTestCase
     {
         return [
             \Arcanedev\Hasher\HasherServiceProvider::class,
-        ];
-    }
-
-    /**
-     * Get package aliases.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
-     */
-    protected function getPackageAliases($app)
-    {
-        return [
-            \Arcanedev\Hasher\Facades\Hasher::class,
         ];
     }
 

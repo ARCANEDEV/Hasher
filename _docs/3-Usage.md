@@ -76,17 +76,13 @@ $hasher = hasher()->with('alt');
 You can also use another helper if you don't like calling multiple methods:
 
 ```php
-$hasher = hash_with('alt');
+$hasher = hasher()->with('alt');
 ```
  
 Of course, you can specify the `option` and the `driver` at the same time with the same helpers:
 
 ```php
 $hasher = hasher()->with('alt', 'custom-driver');
-
-// OR
-
-$hasher = hash_with('alt', 'custom-driver');
 ```
 
  > Note: if you don't specify the driver name, it will grab the default driver.
@@ -103,10 +99,6 @@ $option = hasher()->getDefaultOption()
 // To set the default option name
 $manager = hasher()->option('alt');
 ```
-
-## Facade
-
- > You start with `Hasher::` Facade and you call the same methods as mentioned above. **(Don't repeat yourself rule).**
 
 ## IOC
 
