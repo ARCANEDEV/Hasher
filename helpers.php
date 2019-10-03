@@ -8,7 +8,7 @@ if ( ! function_exists('hasher')) {
      *
      * @return \Arcanedev\Hasher\Contracts\HashManager
      */
-    function hasher() {
+    function hasher(): HashManager {
         return app(HashManager::class);
     }
 }
