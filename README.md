@@ -26,7 +26,7 @@ Feel free to check out the [releases](https://github.com/ARCANEDEV/Hasher/releas
   * Flexible hash manager.
   * Well documented &amp; IDE Friendly.
   * Well tested with maximum code quality.
-  * Laravel `5.0` to `6.0` are supported.
+  * Laravel `5.x | 6.x` are supported.
   * Made with :heart: &amp; :coffee:.
 
 ## Table of contents
@@ -49,7 +49,7 @@ If you discover any security related issues, please email arcanedev.maroc@gmail.
 - [All Contributors][link-contributors]
 
 [badge_license]:   https://img.shields.io/packagist/l/arcanedev/hasher.svg?style=flat-square
-[badge_laravel]:   https://img.shields.io/badge/For%20Laravel-5.0%20to%206.0-orange.svg?style=flat-square
+[badge_laravel]:   https://img.shields.io/badge/For%20Laravel-5.x%20|%206.x-orange.svg?style=flat-square
 
 [badge_build]:     https://img.shields.io/travis/ARCANEDEV/Hasher.svg?style=flat-square
 [badge_coverage]:  https://img.shields.io/scrutinizer/coverage/g/ARCANEDEV/Hasher.svg?style=flat-square

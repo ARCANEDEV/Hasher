@@ -1,6 +1,7 @@
 <?php namespace Arcanedev\Hasher;
 
-use Arcanedev\Support\PackageServiceProvider as ServiceProvider;
+use Arcanedev\Support\Providers\PackageServiceProvider as ServiceProvider;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
 /**
  * Class     HasherServiceProvider
@@ -8,7 +9,7 @@ use Arcanedev\Support\PackageServiceProvider as ServiceProvider;
  * @package  Arcanedev\Hasher
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class HasherServiceProvider extends ServiceProvider
+class HasherServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /* -----------------------------------------------------------------
      |  Properties
@@ -22,13 +23,6 @@ class HasherServiceProvider extends ServiceProvider
      */
     protected $package = 'hasher';
 
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /* -----------------------------------------------------------------
      |  Main Methods
      | -----------------------------------------------------------------
@@ -37,25 +31,21 @@ class HasherServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      */
-    public function register()
+    public function register(): void
     {
         parent::register();
 
         $this->registerConfig();
 
         // Services
-        $this->singleton(Contracts\HashManager::class, function ($app) {
-            return new HashManager($app);
-        });
+        $this->singleton(Contracts\HashManager::class, HashManager::class);
     }
 
     /**
      * Boot the service provider.
      */
-    public function boot()
+    public function boot(): void
     {
-        parent::boot();
-
         $this->publishConfig();
     }
 
@@ -64,7 +54,7 @@ class HasherServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return [
             Contracts\HashManager::class,
