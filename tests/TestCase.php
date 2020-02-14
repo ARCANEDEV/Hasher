@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher\Tests;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
@@ -29,7 +33,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             \Arcanedev\Hasher\HasherServiceProvider::class,
@@ -41,7 +45,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @param  \Illuminate\Foundation\Application  $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         /** @var  \Illuminate\Contracts\Config\Repository  $config */
         $config = $app['config'];

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher\Drivers;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher\Drivers;
 
 use Arcanedev\Hasher\Contracts\HashDriver;
 use Hashids\Hashids;

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher\Tests\Drivers;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher\Tests\Drivers;
 
 use Arcanedev\Hasher\Drivers\HashidsDriver;
 use Arcanedev\Hasher\Tests\TestCase;

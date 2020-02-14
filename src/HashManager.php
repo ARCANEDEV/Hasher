@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher;
 
 use Arcanedev\Hasher\Contracts\HashManager as HashManagerContract;
 use Illuminate\Contracts\Container\Container;
@@ -51,7 +55,7 @@ class HashManager extends Manager implements HashManagerContract
      *
      * @return string
      */
-    public function getDefaultDriver()
+    public function getDefaultDriver(): string
     {
         return $this->config('default.driver');
     }
@@ -61,7 +65,7 @@ class HashManager extends Manager implements HashManagerContract
      *
      * @return string
      */
-    public function getDefaultOption()
+    public function getDefaultOption(): string
     {
         return $this->option ?? $this->config('default.option', 'main');
     }

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher\Tests;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher\Tests;
 
 use Arcanedev\Hasher\HasherServiceProvider;
 
@@ -43,7 +47,7 @@ class HasherServiceProviderTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $expectations = [
             \Illuminate\Support\ServiceProvider::class,
@@ -59,7 +63,7 @@ class HasherServiceProviderTest extends TestCase
     }
 
     /** @test */
-    public function it_can_provides()
+    public function it_can_provides(): void
     {
         $expected = [
             \Arcanedev\Hasher\Contracts\HashManager::class,
