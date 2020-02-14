@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher\Contracts;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher\Contracts;
 
 /**
  * Interface  HashManager

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher\Tests;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher\Tests;
 
 /**
  * Class     HasherManagerTest
@@ -41,7 +45,7 @@ class HasherManagerTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $expectations = [
             \Arcanedev\Hasher\Contracts\HashManager::class,
@@ -54,19 +58,19 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_default_driver()
+    public function it_can_get_default_driver(): void
     {
         static::assertSame('hashids', $this->manager->getDefaultDriver());
     }
 
     /** @test */
-    public function it_can_get_default_option()
+    public function it_can_get_default_option(): void
     {
         static::assertSame('main', $this->manager->getDefaultOption());
     }
 
     /** @test */
-    public function it_can_set_default_option()
+    public function it_can_set_default_option(): void
     {
         $this->manager->option('alt');
 
@@ -74,7 +78,7 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_hash_driver_without_name()
+    public function it_can_get_hash_driver_without_name(): void
     {
         $driver = $this->manager->driver();
 
@@ -89,7 +93,7 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_hash_driver_with_name()
+    public function it_can_get_hash_driver_with_name(): void
     {
         $driver = $this->manager->driver('custom');
 
@@ -104,7 +108,7 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_hash_driver_with_name_and_option()
+    public function it_can_get_hash_driver_with_name_and_option(): void
     {
         $driver = $this->manager->with('alt', 'custom');
 
@@ -121,7 +125,7 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_encode_and_decode()
+    public function it_can_encode_and_decode(): void
     {
         $value      = 123456;
         $mainDriver = $this->manager->option('main')->driver();
@@ -138,7 +142,7 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_encode_and_decode_with_helper()
+    public function it_can_encode_and_decode_with_helper(): void
     {
         $value      = 123456;
         $mainDriver = hasher()->with('main');
@@ -155,7 +159,7 @@ class HasherManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_encode_and_decode_from_manager()
+    public function it_can_encode_and_decode_from_manager(): void
     {
         $value  = 123456;
         $hashed = $this->manager->encode($value);

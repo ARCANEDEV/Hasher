@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Hasher\Tests\Stubs;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Hasher\Tests\Stubs;
 
 use Arcanedev\Hasher\Contracts\HashDriver;
 use Illuminate\Support\Arr;
