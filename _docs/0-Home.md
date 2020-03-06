@@ -8,7 +8,7 @@ The Hasher package provides a flexible hash manager for Laravel.
   * Flexible hash manager.
   * Well documented &amp; IDE Friendly.
   * Well tested with maximum code quality.
-  * Laravel `5.0` to `6.0` are supported.
+  * Laravel `5.x | 6.x | 7.x` are supported.
   * Made with :heart: &amp; :coffee:.
 
 ## Table of contents
