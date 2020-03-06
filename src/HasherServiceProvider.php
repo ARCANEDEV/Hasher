@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arcanedev\Hasher;
 
+use Arcanedev\Hasher\Contracts\HashManager as HashManagerContract;
 use Arcanedev\Support\Providers\PackageServiceProvider as ServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
 
@@ -41,7 +42,7 @@ class HasherServiceProvider extends ServiceProvider implements DeferrableProvide
 
         $this->registerConfig();
 
-        $this->singleton(Contracts\HashManager::class, HashManager::class);
+        $this->singleton(HashManagerContract::class, HashManager::class);
     }
 
     /**
@@ -49,7 +50,9 @@ class HasherServiceProvider extends ServiceProvider implements DeferrableProvide
      */
     public function boot(): void
     {
-        $this->publishConfig();
+        if ($this->app->runningInConsole()) {
+            $this->publishConfig();
+        }
     }
 
     /**
@@ -60,7 +63,7 @@ class HasherServiceProvider extends ServiceProvider implements DeferrableProvide
     public function provides(): array
     {
         return [
-            Contracts\HashManager::class,
+            HashManagerContract::class,
         ];
     }
 }
